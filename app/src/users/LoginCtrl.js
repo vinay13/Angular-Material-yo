@@ -19,7 +19,7 @@ app.controller('LoginCtrl', function ($scope, $http,$state) {
           //  console.log('data', reponse.config.data);
         }, function (error) {
             var result = error.data;
-            console.log('fdsf fs');
+            console.log('vinay fs');
         });
     }
 });
