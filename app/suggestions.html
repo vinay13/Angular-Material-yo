@@ -1,0 +1,34 @@
+<h2> Food Menu</h2>
+
+
+<div ng-controller="FoodMenuCtrl"  >
+
+	<table>
+	<tr>
+	<th>   Monday</th>
+	<th>   Tuesday</th>
+	<th>Wednesday</th>
+	<th>Thursday</th>
+	<th>Friday</th>
+	<th>Saturday</th>
+	</tr>
+	<tr cell="2" ng-repeat="x in foodmenu">
+	<td>
+	<p>{{x.monday}}</p>
+	</td>
+	<td>
+	<p>{{x.tuesday}}</p>
+	</td>
+	<td>
+	<p>{{x.wednesday}}</p>
+	</td>
+	<td>
+	<p>{{x.thursday}}</p>
+	</td>
+	<td>
+	<p>{{x.friday}}</p>
+	</td>
+	<td>
+	<p>{{x.saturday}}</p>
+	</td>
+</div>

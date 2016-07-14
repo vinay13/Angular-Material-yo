@@ -1,0 +1,58 @@
+<div style="margin-left:23px; margin-top:15px; margin-right:15px;">
+
+<md-toolbar layout="row" layout-align="center center" style="background-color:rgb(255,87,34); height:20px;">
+<h4> Have a poll </h4>
+</md-toolbar>
+
+
+
+<md-whiteframe class="md-whiteframe-3dp">
+
+  <form ng-submit="submit()" ng-controller="pollCtrl" ng-cloak>
+
+
+
+  <md-input-container>
+ 				<label>Poll Question</label>
+                <input ng-model="user.question2" type="text">
+  </md-input-container>
+
+
+  	<br />
+  	<div ng-repeat="d in radioData">
+
+  		<input ng-model="user.radio123" type="radio" checked="checked">
+  		<input ng-model="user.input123" type="text">
+  		<br /><br />
+  		 </div>
+  		<md-button  class="md-raised" ng-click="addItem()" type='button' >Add Option</md-button>
+  		<md-button class="md-raised" ng-click="removeItem()" type="button">Delete Option</md-button>
+    
+<br />
+      <md-button class="md-raised md-warn" ng-click="submitForm(user)" >submit</md-button>
+</form>
+</md-whiteframe>
+</div>
+
+<br /><br />
+
+
+
+
+<div  ng-controller="pollCtrl" style="margin-left: 23px; margin-top:5px; margin-right:15px;">
+
+<md-whiteframe class="md-whiteframe-3dp">
+
+<md-toolbar layout="row" layout-align="center center" style="background-color:rgb(255,87,34); height:20px;">
+<h4> Polls </h4>
+</md-toolbar>
+  <div ng-repeat="x in pollQuestion">
+   <h3>Question: {{x.question}}</h3>
+   <h4>option1: {{x.option1}} 56%</h4>
+   <h4>option2: {{x.option2}} 44%</h4>
+  </div>
+</md-whiteframe>
+</div>
+
+
+

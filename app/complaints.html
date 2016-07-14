@@ -1,0 +1,30 @@
+<h2> {{complaints}} </h2>
+
+
+<md-list ng-repeat="vm in complaints_list"> 
+
+
+<md-list-item>
+ {{vm.fdsdf}}  title: {{vm.title}}  {{vm.createdAt}} 
+</md-list-item>
+
+</md-list>
+
+<!-- 
+<div class="table-responsive" ng-controller="ComplaintsCtrl">
+                    <table ng-table="tableParams" class="table">
+                        <tbody ng-repeat="user in complaints_list">
+                            <tr id="tr{{user.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
+                                <td class="rowTd" data-title="'Body Height'" > {{user.body_weight}} </td>
+                                <td data-title="'AMUAC'">{{user.title}}</td>
+                                <td data-title="'Body Weight'">{{user.BP_Low}}</td>
+                                <td data-title="'Body Temperature'">{{user.body_temp}}</td>
+                                <td data-title="'Blood Pressure '">{{user.BP_High}}</td>
+                                <td data-title="'Blood Sugar'">{{user.blood_sugar}}</td>
+                            
+                         </tr>
+                   </tbody>
+              </table>
+</div>
+
+-->      

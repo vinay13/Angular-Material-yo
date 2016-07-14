@@ -1,0 +1,42 @@
+
+<div style="margin-left:23px; margin-top:15px; margin-right:15px;">
+
+<md-toolbar layout="row" layout-align="center center" style="background-color:rgb(255,87,34); height:20px;">
+<h4> Food Menus</h4>
+</md-toolbar>
+
+<div ng-controller="FoodMenuCtrl"  >
+<table>
+<tr>
+<th>   Monday</th>
+<th>   Tuesday</th>
+<th>Wednesday</th>
+<th>Thursday</th>
+<th>Friday</th>
+<th>Saturday</th>
+</tr>
+<tr cell="2" ng-repeat="x in foodmenu">
+<td>
+<p>{{x.monday}}</p>
+</td>
+<td>
+<p>{{x.tuesday}}</p>
+</td>
+<td>
+<p>{{x.wednesday}}</p>
+</td>
+<td>
+<p>{{x.thursday}}</p>
+</td>
+<td>
+<p>{{x.friday}}</p>
+</td>
+<td>
+<p>{{x.saturday}}</p>
+</td></tr>
+
+</table>
+
+</div>
+
+</div>

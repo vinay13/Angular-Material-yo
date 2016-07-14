@@ -1,0 +1,97 @@
+<div style="margin-left:23px; margin-top:15px; margin-right:15px;">
+
+<md-toolbar layout="row" layout-align="center center" style="background-color:rgb(255,87,34); height:20px;">
+<h4> select class</h4>
+</md-toolbar>
+
+
+
+<md-input-container>
+<md-select ng-model="selectedItem" md-selected-text="getSelectedText()">
+          <md-optgroup label="items">
+            <md-option ng-value="item" >1</md-option>
+            <md-option ng-value="item" >2</md-option>
+            <md-option ng-value="item" >3</md-option>
+            <md-option ng-value="item" >4</md-option>
+            <md-option ng-value="item" >5</md-option>
+          </md-optgroup>
+        </md-select>
+
+</md-input-container>
+</div>
+
+
+
+
+
+<div style="margin-left:23px; margin-top:15px; margin-right:15px;">
+
+<md-toolbar layout="row" layout-align="center center" style="background-color:rgb(255,87,34); height:20px;">
+<h4> Time Table</h4>
+</md-toolbar>
+
+<table ng-controller="timetableCtrl">
+<tr>
+
+<th>time
+</th>
+
+<th>Monday
+</th>
+
+
+<th>Tuesday
+</th>
+
+
+<th>Wednesday
+</th>
+
+
+<th>Thursday
+</th>
+
+
+<th>Friday
+</th>
+
+
+<th>Saturday
+</th>
+
+</tr>
+
+<tr ng-repeat="x in timetable">
+<td>
+{{x.periodTime}}
+</td>
+
+<td>
+{{x.monday}}
+</td>
+
+
+<td>
+{{x.tuesday}}
+</td>
+
+<td>
+{{x.wednesday}}
+</td>
+
+<td>
+{{x.thursday}}
+</td>
+
+<td>
+{{x.friday}}
+</td>
+
+<td>
+{{x.saturday}}
+</td>
+
+</tr>
+</table>
+
+</div>	

@@ -16,6 +16,13 @@ html, body {
   width: 36px;
 }
 
+.md-button{
+
+  min-width: 262px; 
+  color : white;
+}
+
+
 
 md-toolbar h3 {
   margin: auto;
@@ -34,11 +41,11 @@ md-list-item > button {
   }
 
   md-sidenav  md-list {
-    padding: 0px 0px 8px 0px;
+    padding: 10px 0px 8px 0px;
   }
 
 
-/* Primary content area */
+/* Primary content area    //  color: #03a9f4;*/
 
 #content {
   overflow: hidden;
@@ -63,6 +70,16 @@ md-list-item > button {
 
 
 
+md-content.md-default-theme, md-content {
+    color: rgba(0,0,0,0.87);
+    background-color: rgb(220, 220, 220);
+}
+
+md-content.md-default-theme, md-content div{
+    color: rgba(0,0,0,0.87);
+    background-color: #fff;
+}
+
 #content md-icon.avatar {
   margin-top: 10px;
 }
@@ -74,9 +91,10 @@ md-list-item > button {
 }
 
 md-button.menuBtn > md-icon {
-  fill:white;
+  fill: rgb(231,87,83);
   width:24px;
   height:24px;
+  color : rgb(231,87,83);
 }
 
 #content .md-button.share:active > md-icon {
@@ -109,7 +127,6 @@ md-toolbar h1 {
   position: relative;
   width: 128px;
   height: 128px;
-  border: 1px solid #ddd;
   border-radius: 50%;
   display: inline-block;
   overflow: hidden;
@@ -131,3 +148,74 @@ span.name {
   font-size:1.1em;
   padding-left:5px;
 }
+
+
+md-sidenav._md-locked-open, md-sidenav._md-locked-open._md-closed, md-sidenav._md-locked-open._md-closed.md-sidenav-left, md-sidenav._md-locked-open._md-closed, md-sidenav._md-locked-open._md-closed.md-sidenav-right, md-sidenav._md-locked-open-remove._md-closed {
+    position: static;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    background-color: rgb(56, 93, 197);
+}
+
+
+
+
+/* css for login box */ 
+md-input-container{
+  width : 500px;
+}
+
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+
+
+/* new css  */
+
+
+.radioButton body {
+  padding: 20px; }
+.radioButton hr {
+  margin-left: -20px;
+  opacity: 0.3; }
+.radioButton md-radio-group {
+  width: 150px; }
+.radioButton p:last-child {
+  padding-bottom: 50px; }
+.radioButton [ng-controller] {
+  padding: 0 20px; }
+.radioButton .radioValue {
+  margin-left: 5px;
+  color: #0f9d58;
+  font-weight: bold;
+  padding: 5px; }
+.radioButton md-icon {
+  margin: 0 20px 20px;
+  width: 128px;
+  height: 128px; }
+.radioButton .ipsum {
+  color: saddlebrown;
+  font-size: 0.9em; }
+
+
+/* new datepicker css */
+
+.datepickerdemoBasicUsage {
+  /** Demo styles for mdCalendar. */ }
+  .datepickerdemoBasicUsage md-content {
+    padding-bottom: 200px; }
+  .datepickerdemoBasicUsage .validation-messages {
+    font-size: 12px;
+    color: #dd2c00;
+    margin: 10px 0 0 25px; }
+
+
+
+
+
+

@@ -1,0 +1,43 @@
+<div ng-controller="EventsCtrl" style="margin-left:23px; margin-top:15px; margin-right:15px;">
+
+<md-toolbar layout="row" layout-align="center center" style="background-color:rgb(255,87,34); height:20px;">
+<h4> Events </h4>
+</md-toolbar>
+
+
+<md-datepicker ng-model="myDate"  md-placeholder="Enter date"></md-datepicker>
+
+
+
+
+
+
+<md-list ng-repeat="x in events">
+
+<div layout="row" style="width:100%; border:1px solid grey">
+<h3 style="color:red;">{{x.date}}</h3>
+{{x.time}}
+<br/>
+{{x.title}}
+<br/>
+
+{{x.description}}
+</div>
+
+</md-list>
+
+</div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+

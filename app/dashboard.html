@@ -1,0 +1,27 @@
+<div style="margin-left:23px; margin-top:15px; margin-right:15px;">
+
+<md-toolbar layout="row" layout-align="center center" style="background-color:rgb(255,87,34); height:20px;">
+<h4> Thought Of The Day</h4>
+</md-toolbar>
+
+
+<h4>{{ todayThought.thoughtDesc }}</h4>
+
+
+</div>
+
+
+
+<div style="margin-left:23px; margin-top:15px; margin-right:15px;">
+
+<md-toolbar layout="row" layout-align="center center" style="background-color:rgb(255,87,34); height:20px;">
+<h4> Charts</h4>
+</md-toolbar>
+
+
+	<canvas width="800px" height="500px"  id="line" class="chart chart-line" chart-data="data "
+	chart-labels="labels" chart-series="series" chart-options="options"
+	chart-dataset-override="datasetOverride" chart-click="onClick">
+
+</canvas> 
+</div>

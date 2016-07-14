@@ -1,0 +1,80 @@
+<md-toolbar layout="row" layout-align="space around center">
+    <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
+        <md-icon md-svg-icon="menu"></md-icon>
+    </md-button>
+    <h2>YUGMA</h2>
+    <span>
+        <md-button ng-controller="LoginCtrl"  ng-click="SubmitLogin()" aria-label="The Button" > login     </md-button> 
+        <md-button ng-controller="RegistrationCtrl" ng-click="SubmitLogin()" aria-label="The Button" > Register  </md-button>
+      </span>
+</md-toolbar>
+
+
+
+
+
+<div layout="row" class="container" flex>
+<md-sidenav layout="row" ng-click="ul.toggleList()" md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left" class="md-whiteframe-z2">
+        <md-list>
+            <md-button ui-sref="app.dashboard">
+                <md-icon md-svg-icon="svg-17" class="avatar"></md-icon>
+                Dashboard
+            </md-button>
+
+            <md-button ui-sref="app.complaints">
+                <md-icon md-svg-icon="svg-18" class="avatar"></md-icon>
+                Complaints
+            </md-button>
+
+
+            <md-button ui-sref="app.events">
+                <md-icon md-svg-icon="svg-18" class="avatar"></md-icon>
+                Events
+            </md-button>
+
+            <md-button ui-sref="app.suggestions">
+                <md-icon md-svg-icon="svg-19" class="avatar"></md-icon>
+                Suggestions
+            </md-button>
+
+            <md-button ui-sref="app.foodmenu">
+                <md-icon md-svg-icon="svg-23" class="avatar"></md-icon>
+                Food Menus
+            </md-button>
+
+
+            <md-button flex-offset="15" layout="row" ui-sref="app.poll">
+                <md-icon flex="35"  md-svg-icon="svg-24" class="avatar"></md-icon>
+                <div>Polls</div> 
+            </md-button>
+
+
+            <md-button ui-sref="app.timetable">
+                <md-icon md-svg-icon="svg-25" class="avatar"></md-icon>
+                Time Table
+            </md-button>
+
+
+
+            <md-button ui-sref="app.homework">
+                <md-icon md-svg-icon="svg-26" class="avatar"></md-icon>
+                Homework
+            </md-button>
+
+
+
+        </md-list>
+    </md-sidenav>
+
+<md-content ui-view></md-content> 
+
+
+<!--
+<md-content>
+  <div data-ng-include="dashboard.html"></div>
+</md-content>
+-->
+</div>
+ 
+
+
