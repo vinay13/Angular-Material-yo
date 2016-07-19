@@ -22,13 +22,8 @@ app.constant('JS_REQUIRES', {
 });
 
 
-/*   end constants */
-
-
-
-
-             
-app.config(function ( $stateProvider , $urlRouterProvider , $mdThemingProvider, $mdIconProvider , $provide ,JS_REQUIRES ){
+/*   end constants */             
+app.config(function ( $stateProvider , $urlRouterProvider , $mdThemingProvider, $mdIconProvider  ,$provide ,JS_REQUIRES ){
 
         //app.constant = $provide.constant;
 
@@ -65,29 +60,53 @@ app.config(function ( $stateProvider , $urlRouterProvider , $mdThemingProvider, 
           })
          .state('app.dashboard',{
             url : '/dashboard',
-            templateUrl : 'dashboard.html',
-            controller :  'LineCtrl'
+            views:{
+              'mdcontent': {
+                templateUrl : 'dashboard.html',
+                controller : 'LineCtrl'
+              }
+            }
+
             //resolve: {'LineCtrl'}
           })
          .state('app.complaints',{
             url : '/complaints',
-            templateUrl : 'complaints.html',
-            controller : 'ComplaintsCtrl'
+            views:{
+              'mdcontent':{
+              templateUrl : 'complaints.html',
+              controller : 'ComplaintsCtrl'
+            }
+           }
          })
          .state('app.foodmenu',{
             url : '/foodmenu',
-            templateUrl : 'foodmenu.html',
-            controller : 'FoodMenuCtrl'
+            views:{
+              'mdcontent':{
+                templateUrl : 'foodmenu.html',
+                controller : 'FoodMenuCtrl'
+              }
+            }
          })
          .state('app.poll',{
             url : '/poll',
-            templateUrl : 'poll.html',
-            controller : 'pollCtrl'
-         })
+            cache:false,
+            views:{
+              'mdcontent':{
+                templateUrl : 'poll.html',
+                controller : 'pollCtrl'
+              }
+            }
+          }) 
          .state('app.events',{
             url : '/events',
-            templateUrl : 'events.html',
-            controller : 'EventsCtrl'
+            cache:false,
+            views: {
+              'mdcontent':{
+                templateUrl :'events.html',
+                controller : 'EventsCtrl'
+              }
+            }
+
          })
          .state('app.events.new',{
             url : '/new',
@@ -102,20 +121,34 @@ app.config(function ( $stateProvider , $urlRouterProvider , $mdThemingProvider, 
          })
          .state('app.timetable',{
             url: '/timetable',
-            templateUrl : 'timetable.html',
-            controller   : 'timetableCtrl'
-
+            views : {
+              'mdcontent':{
+                templateUrl : 'timetable.html',
+                controller : 'timetableCtrl'
+              }
+            }
          })
          .state('app.homework',{
             url: '/homework',
-            templateUrl : 'homework.html',
-            controller : 'homeworkCtrl'
+            views : {
+              'mdcontent':{
+
+                 templateUrl : 'homework.html',
+                 controller : 'homeworkCtrl'
+              }
+            }
+           
             
          })
           .state('app.suggestions',{
             url : '/suggestions',
-            templateUrl : 'suggestions.html',
-            controller : 'FoodMenuCtrl'
+            views:{
+              'mdcontent':{
+                templateUrl : 'suggestions.html',
+                controller :  'FoodMenuCtrl'
+              }
+            }
+
          });
 
 
@@ -127,25 +160,38 @@ app.config(function ( $stateProvider , $urlRouterProvider , $mdThemingProvider, 
 
 
 
-/* factory */
 
 
-/*
-    var OtherComplaints = [];
-    var TeacherComplaints = [];
 
 
-    var getTeacherComplaint = function(id){
 
-      var deferred = $q.defer();
+app.controller('sampleController', ['$nutrition', '$scope', function ($nutrition, $scope) {
+  'use strict';
 
-      $http({
-          method :  "GET",
-          contentType : "aplication/json",
-          url: 
-      })
-    }
-*/
+  $scope.selected = [];
+
+  $scope.query = {
+    order: 'name',
+    limit: 5,
+    page: 1
+  };
+
+  function success(desserts) {
+    $scope.desserts = desserts;
+  }
+
+  $scope.getDesserts = function () {
+    $scope.promise = $nutrition.desserts.get($scope.query, success).$promise;
+  };
+
+}]);
+
+
+
+
+
+
+
 
 
 
@@ -161,7 +207,7 @@ app.factory('homeworkService', function ($http, $q) {
       $http({
         method: "GET",
         contentType: "application/json",
-        url: 'http://nxtlifetechnologies.ind-cloud.everdata.com/srgsrk-test/parent/homework/' + id
+        url: 'http://nxtlifetechnologies.ind-cloud.everdata.com/srgsrk-test/management/homework/13'
       }).success(function (response) {
        var TeacherComplaints = response;
         deferred.resolve(response);
@@ -171,9 +217,28 @@ app.factory('homeworkService', function ($http, $q) {
 
       return deferred.promise;
     }
+
+
+    var getStandard = function(id){
+          var deferred = $q.defer();
+
+          $http({
+            method : "GET",
+            contentType : "application/json",
+            url : 'http://nxtlifetechnologies.ind-cloud.everdata.com/srgsrk-test/fetch-standard'
+          }).success(function(response){
+            var getStandard = response ;
+            deferred.resolve(response);
+          }).error(function(response){
+            deferred.reject(response);
+          });
+
+          return deferred.promise;
+    }
     
     return {
-      getHomework: getHomework
+      getHomework: getHomework ,
+      getStandard : getStandard
     }
 
   })
@@ -196,7 +261,7 @@ app.factory('managementComplaintService', function ( $http, $q ) {
       $http({
           method: "GET",
           contentType: "application/json",
-          url: "http://nxtlifetechnologies.ind-cloud.everdata.com/srgsrk-test/director/teacher-complaint"
+          url: "http://nxtlifetechnologies.ind-cloud.everdata.com/srgsrk-test/teacher-complaint/13"
       }).success(function (response) {
           deferred.resolve(response);
       }).error(function (response) {
@@ -212,6 +277,72 @@ app.factory('managementComplaintService', function ( $http, $q ) {
     }
 
   });
+
+
+/* end of managementComplaintService */
+
+
+
+
+/* parents complaints */
+
+
+app.factory('parentsComplaintService',function($http , $q){
+
+  var NewComplaints = function(model){
+
+      var deferred = $q.defer();
+
+      $http({
+            method : "POST",
+            contentType : "application/json",
+            data: {
+                    title : model.title,
+                    parentId : 1,
+                    childId : 2,
+                    StandardID : 11,
+                    categoryId : 1,
+                    SubCategoryId: 3,
+                    anonymous : 0,
+                    comment : model.description
+            },
+            url : "http://nxtlifetechnologies.ind-cloud.everdata.com/srgsrk-test/save-complaint"
+          }).success(function(response){
+            deferred.resolve(response);
+          }).error(function(response){
+              deferred.reject(response);
+          });
+
+          return deferred.promise;
+
+      }
+
+      return {
+
+            NewComplaints : NewComplaints 
+      }
+
+  
+});
+
+
+
+
+
+/* end of parents */ 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*   end of factory */
 
@@ -332,6 +463,68 @@ app.factory('timetableService', function ($http, $q) {
   })
 
 
+app.factory('PollService',function($http,$q){
+
+    var getPoll = function(){
+
+      var deferred = $q.defer();
+      $http({
+        method : "GET",
+        contentType : 'application/json',
+        url : "http://nxtlifetechnologies.ind-cloud.everdata.com/srgsrk-test/fetch-poll-for-parent/2"
+
+      }).success(function(response){
+
+          deferred.resolve(response);
+
+      }).error(function(response){
+        deferred.reject(response);
+      });
+          return deferred.promise;
+    }
+
+
+
+
+
+
+    var AddPoll = function(user){
+
+      var deferred = $q.defer();
+
+      $http({
+          method : "POST",
+          contentType : "application/json",
+          url : "http://nxtlifetechnologies.ind-cloud.everdata.com/srgsrk-test/add-poll",
+          data: {
+                        "teacherId": 13,
+                        "question": user.question,
+                        "dueDate": "2016-07-07",
+                        "optionId": 3, 
+                        "pollTypeId": 1,
+                        "optionTypeId": 1,
+                        "options": [user.option1 , user.option2 , user.option3] ,
+                        "standardIds": [2]
+
+                  }
+              }).success(function (response) {
+                  deferred.resolve(response);  
+              }).error(function (response) {
+                  deferred.reject(response);
+              });
+
+                return deferred.promise
+          } 
+
+
+
+    return {
+              getPoll : getPoll,
+              AddPoll : AddPoll
+    }
+})
+
+
 
 
 
@@ -447,13 +640,22 @@ app.controller('UserController', function(userService, $mdSidenav, $mdBottomShee
 
 
 
-app.controller('homeworkCtrl', function ($scope,$http,$state,homeworkService){
+app.controller('homeworkCtrl', function ($scope,$http,$state,homeworkService,$filter){
+
+    //filter()
 
   homeworkService.getHomework().then(function (response) {
             $scope.homework = response;
 
             console.log('homework',$scope.homework);
     });
+
+
+  homeworkService.getStandard().then(function(response){
+
+      $scope.getStandards =response ; 
+      console.log('getStandards',response);
+   });
 
 });
 
@@ -481,7 +683,7 @@ app.controller('EventsCtrl', function ($scope,$http,$state,EventsService,$rootSc
             scope.$watch('events', function(newValue, oldValue) {
                   scope.counter = scope.counter + 1;
             });
-            console.log('timetable',$scope.events);
+            console.log('events',$scope.events);
     });
 
 
@@ -564,11 +766,29 @@ app.controller('LoginCtrl', function ($scope, $http, $state) {
     
 });
 
-app.controller('pollCtrl', function ($scope, $http, $state) {
+app.controller('pollCtrl', function ($scope, $http, $state ,$mdSidenav,PollService) {
     console.log('LoginCtrl');
        
 
-       $scope.data = {
+    PollService.getPoll().then(function (response) {
+            $scope.polls = response;
+            $scope.options = response.options;
+
+            console.log('polls',$scope.polls);
+            console.log('options',$scope.options);
+    });
+
+
+
+  $scope.submitForm = function(user) {
+      PollService.AddPoll(user).then(function(response){
+        console.log('added polls',response);
+      });
+  };
+
+
+
+  $scope.data = {
       group1 : 'Banana',
       group2 : '2',
       group3 : 'avatar-1'
@@ -588,12 +808,21 @@ app.controller('pollCtrl', function ($scope, $http, $state) {
     }];
 
 
+
     $scope.radioData = [
-      {type: 'text',value: '' },
-      {type: 'text',value: '' },
 
+      {
+        type: 'text', 
+        value : 'user.option1' 
+      },
 
+      {
+        type: 'text' ,
+        value : 'user.option2' 
+
+      }
     ];
+
 
     $scope.pollQuestion = [
         //console.log( 'poll-pollQuestion' , $scope.pollQuestion );
@@ -612,20 +841,6 @@ app.controller('pollCtrl', function ($scope, $http, $state) {
     ];
 
 
-    $scope.submitForm = function(ngModel) {
-      console.log('gdgfdg');
-      $scope.pollQuestion.push(
-          {
-              question2 : ngModel.question2,
-              option1 : ngModel.radio123,
-              option2 : ngModel.input123
-
-          }
-);
-          console.log( 'pollQuestion' , $scope.pollQuestion );
-
-        
-    };
 
 
     $scope.addItem = function() {
@@ -639,19 +854,16 @@ app.controller('pollCtrl', function ($scope, $http, $state) {
 
     $scope.removeItem = function() {
       $scope.radioData.pop();
-    };
-
-
-
-
-  
-    
+    };    
 });
 
 
 
 
 
+
+
+//app.controller()
 
 app.controller('SuggestionsCtrl', function ($scope,$http,$state){
 
@@ -694,15 +906,14 @@ app.controller('DashBoardCtrl', function ($scope,$http,$state){
 
 
 
+
+
     
-app.controller('ComplaintsCtrl',function ($scope, $stateParams, $http, $state, $filter, JS_REQUIRES, managementComplaintService){
+app.controller('ComplaintsCtrl',function ($scope, $stateParams, $http, $state, $filter, JS_REQUIRES, managementComplaintService , parentsComplaintService){
 
 
-      $scope.complaints = "List of Complaints";
-    $http.get("http://nxtlifetechnologies.ind-cloud.everdata.com/srgsrk-test/director/teacher-complaint")
-        .then(function (response) {
-            
-            managementComplaintService.getDirectorTeacherComplaints().then(function (response) {
+    
+   managementComplaintService.getDirectorTeacherComplaints().then(function (response) {
 
                 var date=[];
                 for(var i=0;i<response.length ; i++){
@@ -724,7 +935,23 @@ app.controller('ComplaintsCtrl',function ($scope, $stateParams, $http, $state, $
 
                 console.log('response' , $scope.complaints_list);
             });
-        });
+
+
+
+
+
+   $scope.SubmitComplain = function(model){
+
+
+      parentsComplaintService.NewComplaints(model).then(function(response){
+
+          $scope.Newcomplaints = response ;
+          console.log('newcomplain',response);
+
+      })
+
+   }
+
 });
 
 
@@ -772,4 +999,6 @@ app.controller("LineCtrl", function ($scope,thoughtService) {
     }
   };
 });         
+
+
 

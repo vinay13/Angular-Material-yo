@@ -13,16 +13,26 @@
 
 
   <md-input-container>
- 				<label>Poll Question</label>
-                <input ng-model="user.question2" type="text">
+ 			<label>Poll Question</label>
+      <input ng-model="user.question" type="text">
   </md-input-container>
+  <br />
+
+  <!-- <div ng-repeat="d in radioData"> -->
+  <div>
+      <input ng-model="user.option" type="radio" checked="checked">
+  		<input ng-model="user.option1" type="text">
+
+      <input ng-model="user.option" type="radio" checked="checked">
+      <input ng-model="user.option2" type="text">
 
 
-  	<br />
-  	<div ng-repeat="d in radioData">
+      <input ng-model="user.option" type="radio" checked="checked">
+      <input ng-model="user.option3" type="text">
 
-  		<input ng-model="user.radio123" type="radio" checked="checked">
-  		<input ng-model="user.input123" type="text">
+
+
+
   		<br /><br />
   		 </div>
   		<md-button  class="md-raised" ng-click="addItem()" type='button' >Add Option</md-button>
@@ -39,17 +49,27 @@
 
 
 
-<div  ng-controller="pollCtrl" style="margin-left: 23px; margin-top:5px; margin-right:15px;">
 
-<md-whiteframe class="md-whiteframe-3dp">
+<div ng-controller="pollCtrl" style="margin-left: 23px; margin-top:5px; margin-right:15px;">
 
-<md-toolbar layout="row" layout-align="center center" style="background-color:rgb(255,87,34); height:20px;">
-<h4> Polls </h4>
-</md-toolbar>
-  <div ng-repeat="x in pollQuestion">
-   <h3>Question: {{x.question}}</h3>
-   <h4>option1: {{x.option1}} 56%</h4>
-   <h4>option2: {{x.option2}} 44%</h4>
+  <md-whiteframe class="md-whiteframe-3dp">
+
+  <md-toolbar layout="row" layout-align="center center" style="background-color:rgb(255,87,34); height:20px;">
+  <h4> Polls </h4>
+  </md-toolbar>
+  <div ng-repeat="x in polls">
+  <h3>{{x.pollQuestion}}</h3>
+    <md-radio-group>
+    <div ng-repeat="y in x.options">
+  
+    <md-radio-button style="padding-left: 1%;
+    margin: 4%;">{{y.name}}</md-radio-button>
+  
+   </div>
+
+
+  </md-radio-group>
+  <md-button class="md-raised"> vote </md-button>
   </div>
 </md-whiteframe>
 </div>

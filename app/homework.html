@@ -1,1 +1,47 @@
-<h2>Homework</h2>
+<div ng-controller="homeworkCtrl" style="margin-left:23px; margin-top:15px; margin-right:15px;">
+
+<md-toolbar layout="row" layout-align="center center" style="background-color:rgb(255,87,34); height:20px;">
+		<h4> Homework </h4>
+	</md-toolbar>
+
+
+<md-input-container>
+<md-select  ng-model="model.standards" placeholder="standards">
+ 	<md-option ng-repeat="class in getStandards" ng-disabled="$index === 1" >
+            {{class.name}}
+ 	</md-option>
+</md-select>
+</md-input-container>
+
+<md-input-container>
+	<input type="text" placeholder="homework" >
+</md-input-container>
+
+
+<md-button layout="column" class="md-raised" type='button' >
+	submit
+</md-button>
+</div>
+
+
+
+
+<!-- new fds -->
+<div ng-controller="homeworkCtrl" style="margin-left:23px; margin-top:15px; margin-right:15px;">
+
+	<md-toolbar layout="row" layout-align="center center" style="background-color:rgb(255,87,34); height:20px;">
+		<h4> Homework View</h4>
+	</md-toolbar>
+
+
+	<md-list class="white" ng-repeat="h in homework">
+		
+			<h3>{{h.createdAt}}</h3> 
+			<h3> {{h.dueDate}} </h3>
+			<h3>standard : {{h.standardId}}</h3>
+			<h3>{{h.homeworkTitle}}</h3> 
+			<h3>{{h.description}}</h3>
+	</md-list>
+</div>
+<!-- end -->
+

@@ -8,19 +8,35 @@
 <md-datepicker ng-model="myDate"  md-placeholder="Enter date"></md-datepicker>
 
 
-<md-list ng-repeat="x in events">
+<md-button ui-sref="app.events.new">
+	
+	<md-icon md-svg-icon="svg-27" class="avatar"></md-icon>
+</md-button>
 
-<div layout="row" style="width:100%; border:1px solid grey">
+<md-list layout="row" layout-sm="column" ng-repeat="x in events" style="padding:10px;">
+
+<div style="width:80%; border:1px solid grey; padding:10px;">
 <h3 style="color:red;">{{x.date}}</h3>
-{{x.time}}
-<br/>
-{{x.title}}
-<br/>
 
-{{x.description}}
+<h4>{{x.time}}</h4>
+
+<h4>{{x.title}}</h4>
+
+
+<div>
+<p><i style="color:green;">{{x.description}}</i></p>
+</div>
 </div>
 
 </md-list>
+
+
+
+
+
+
+
+
 
 </div>
 

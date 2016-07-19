@@ -1,7 +1,51 @@
-<h2> {{complaints}} </h2>
+<div ng-controller="ComplaintsCtrl" style="margin-left:23px; margin-top:15px; margin-right:15px;">
+
+<md-toolbar layout="row" layout-align="center center" style="background-color:rgb(255,87,34); height:20px;">
+<h4> New Complaints </h4>
+</md-toolbar>
 
 
-<md-list ng-repeat="vm in complaints_list"> 
+
+<md-input-container layout="column">
+<input type="text" ng-model="model.complaintAgainst" placeholder="Against" />
+</md-input-container>
+
+
+<md-input-container layout="column">
+<input type="text" ng-model="model.title" placeholder="title" />
+</md-input-container>
+
+
+<md-input-container layout="column">
+<label>Description</label>
+  <textarea ng-model="model.description"></textarea>
+</md-input-container>  
+
+
+<md-checkbox ng-model="model.isChecked" aria-label="anomynous?">
+  anomynous
+</md-checkbox>
+
+
+<md-button ng-click="SubmitComplain(model)" layout="column" class="md-raised md-primary"> 
+Submit
+</md-button>
+
+</div>
+
+
+
+
+
+<div style="margin-left:23px; margin-top:15px; margin-right:15px;">
+
+<md-toolbar layout="row" layout-align="center center" style="background-color:rgb(255,87,34); height:20px;">
+<h4> Complaints </h4>
+</md-toolbar>
+
+
+
+<md-list ng-repeat="vm in complaints_list | limitTo:-5 "> 
 
 
 <md-list-item>
@@ -9,22 +53,4 @@
 </md-list-item>
 
 </md-list>
-
-<!-- 
-<div class="table-responsive" ng-controller="ComplaintsCtrl">
-                    <table ng-table="tableParams" class="table">
-                        <tbody ng-repeat="user in complaints_list">
-                            <tr id="tr{{user.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
-                                <td class="rowTd" data-title="'Body Height'" > {{user.body_weight}} </td>
-                                <td data-title="'AMUAC'">{{user.title}}</td>
-                                <td data-title="'Body Weight'">{{user.BP_Low}}</td>
-                                <td data-title="'Body Temperature'">{{user.body_temp}}</td>
-                                <td data-title="'Blood Pressure '">{{user.BP_High}}</td>
-                                <td data-title="'Blood Sugar'">{{user.blood_sugar}}</td>
-                            
-                         </tr>
-                   </tbody>
-              </table>
 </div>
-
--->      

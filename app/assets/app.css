@@ -1,3 +1,7 @@
+@import "datepicker.css";
+@import "sidenav.css";
+@import "login.css";
+
 html, body {
   font-family: 'Roboto', sans-serif;
   font-size:14px;
@@ -19,7 +23,7 @@ html, body {
 .md-button{
 
   min-width: 262px; 
-  color : white;
+  color : black;
 }
 
 
@@ -31,18 +35,7 @@ md-toolbar h3 {
 
 /* Sidenav area */
 
-md-list-item > button {
-  width:100%;
-  text-align:left !important;
-}
 
-  md-list .md-button.selected {
-    color: #03a9f4;
-  }
-
-  md-sidenav  md-list {
-    padding: 10px 0px 8px 0px;
-  }
 
 
 /* Primary content area    //  color: #03a9f4;*/
@@ -69,15 +62,17 @@ md-list-item > button {
 }
 
 
-
 md-content.md-default-theme, md-content {
     color: rgba(0,0,0,0.87);
     background-color: rgb(220, 220, 220);
 }
 
+
+
 md-content.md-default-theme, md-content div{
     color: rgba(0,0,0,0.87);
     background-color: #fff;
+    height: 100%;
 }
 
 #content md-icon.avatar {
@@ -161,20 +156,6 @@ md-sidenav._md-locked-open, md-sidenav._md-locked-open._md-closed, md-sidenav._m
 
 
 
-
-/* css for login box */ 
-md-input-container{
-  width : 500px;
-}
-
-
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-
-
-
 /* new css  */
 
 
@@ -203,16 +184,13 @@ table, th, td {
   font-size: 0.9em; }
 
 
-/* new datepicker css */
+/* new datepicker css 
 
-.datepickerdemoBasicUsage {
-  /** Demo styles for mdCalendar. */ }
-  .datepickerdemoBasicUsage md-content {
-    padding-bottom: 200px; }
-  .datepickerdemoBasicUsage .validation-messages {
-    font-size: 12px;
-    color: #dd2c00;
-    margin: 10px 0 0 25px; }
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+*/
 
 
 
