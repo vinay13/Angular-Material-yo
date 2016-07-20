@@ -1,6 +1,6 @@
 'use strict';
 
-var app  = angular.module('starterApp', ['ui.router','ngMaterial','chart.js','ngTable']);
+var app  = angular.module('starterApp', ['ui.router','ngMaterial','chart.js','restangular','ngTable']);
 
 
 /* constants */
@@ -23,9 +23,11 @@ app.constant('JS_REQUIRES', {
 
 
 /*   end constants */             
-app.config(function ( $stateProvider , $urlRouterProvider , $mdThemingProvider, $mdIconProvider  ,$provide ,JS_REQUIRES ){
+app.config(function ( $stateProvider , $urlRouterProvider , $mdThemingProvider, $mdIconProvider ,RestangularProvider ,$provide ,JS_REQUIRES ){
 
         //app.constant = $provide.constant;
+        RestangularProvider.setBaseUrl('http://nxtlifetechnologies.ind-cloud.everdata.com/srgsrk-test/');
+
 
         $mdIconProvider
                 .defaultIconSet("./assets/svg/avatars.svg", 128)
@@ -140,6 +142,17 @@ app.config(function ( $stateProvider , $urlRouterProvider , $mdThemingProvider, 
            
             
          })
+
+         .state('app.arbit',{
+            url:'/arbit',
+            views :{
+              'mdcontent' : {
+                templateUrl : 'arbit.html',
+                controller : 'arbitCtrl'
+              }
+            }
+         })
+
           .state('app.suggestions',{
             url : '/suggestions',
             views:{
@@ -189,6 +202,18 @@ app.controller('sampleController', ['$nutrition', '$scope', function ($nutrition
 
 
 
+app.controller('arbitCtrl',function($scope,Restangular){
+
+  Restangular.all('fetch-standard').getList()
+  .then(function(response){
+    //returns a list of users
+    $scope.standard = response[0];
+
+    console.log('standards',$scope.standard);
+  
+})
+
+});
 
 
 

@@ -1,6 +1,9 @@
+
 @import "datepicker.css";
-@import "sidenav.css";
 @import "login.css";
+@import "sidenav.css";
+
+
 
 html, body {
   font-family: 'Roboto', sans-serif;
@@ -9,6 +12,8 @@ html, body {
   margin: 0px;
   padding: 0px;
 }
+
+
 
 /* Toolbar area */
 
@@ -64,9 +69,13 @@ md-toolbar h3 {
 
 md-content.md-default-theme, md-content {
     color: rgba(0,0,0,0.87);
-    background-color: rgb(220, 220, 220);
+    background-color: #fff;
 }
 
+md-divider {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 
 
 md-content.md-default-theme, md-content div{
@@ -191,9 +200,6 @@ table, th, td {
     border-collapse: collapse;
 }
 */
-
-
-
 
 
 
