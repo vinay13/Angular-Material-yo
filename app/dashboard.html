@@ -1,6 +1,6 @@
 
 
-<div  style="margin-left:23px; margin-top:15px; margin-right:15px;">
+<!-- <div  style="margin-left:23px; margin-top:15px; margin-right:15px;">
 
 <md-toolbar  layout="row" layout-align="center center" style="background-color:rgb(255,87,34); height:20px;">
 <h4> Thought Of The Day</h4>
@@ -10,12 +10,12 @@
 <h4>{{ todayThought.thoughtDesc }}</h4>
 
 
-</div>
+</div> -->
 
 
 
 
-<div  style="margin-left:23px; margin-top:15px; margin-right:15px;">
+<!-- <div  style="margin-left:23px; margin-top:15px; margin-right:15px;">
 
 <md-toolbar layout="row" layout-align="center center" style="background-color:rgb(255,87,34); height:20px;">
 <h4> Charts</h4>
@@ -27,4 +27,20 @@
 	chart-dataset-override="datasetOverride" chart-click="onClick">
 
 </canvas> 
+</div> -->
+<div  style="margin-left:23px; margin-top:15px; margin-right:15px;">
+
+<md-toolbar layout="row" layout-align="center center" style="background-color:rgb(255,87,34); height:20px;">
+<h4> Complaints By Status Charts</h4>
+</md-toolbar>
+
+
+<!-- <canvas width="600px" height="400px" id="pie" class="chart chart-pie"
+  chart-data="data" chart-labels="labels" chart-options="options">
+</canvas>  -->
+
+<canvas width="600px" height="400px" id="base" class="chart-horizontal-bar"
+  chart-data="data" chart-labels="labels" >
+</canvas> 
+
 </div>

@@ -65,7 +65,7 @@ app.config(function ( $stateProvider , $urlRouterProvider , $mdThemingProvider, 
             views:{
               'mdcontent': {
                 templateUrl : 'dashboard.html',
-                controller : 'LineCtrl'
+                controller : 'BarCtrl'
               }
             }
 
@@ -981,49 +981,79 @@ app.controller('ComplaintsCtrl',function ($scope, $stateParams, $http, $state, $
 
 
 
+app.factory('ChartService', function ($http, $q) {
+
+    var getGraph = function (id) {
+
+      var deferred = $q.defer();
 
 
-app.controller("LineCtrl", function ($scope,thoughtService) {
+        $http({
+        method: 'GET',
+        contentType: 'application/json',
+        url:  'http://nxtlifetechnologies.ind-cloud.everdata.com/srgsrk-test/director/graph'}).success(function (response) {
+        deferred.resolve(response);
+      }).error(function (response) {
+        deferred.reject(response);
+      });
+
+
+      return deferred.promise;
+
+    }
+
+        return {
+              getGraph : getGraph
+    }
+});
 
 
 
-  thoughtService.getTodayThought().then(function(response){
 
-      $scope.todayThought = response ; 
-      console.log(response);
+app.controller("LineCtrl", function ($scope,ChartService) {
+
+    ChartService.getGraph().then(function (response) {
+
+      console.log('response',response);
+
+      $scope.labels = [];
+      $scope.data = [];
+
+      angular.forEach(response.ComplaintByStatus.Complaint, function(val, index) {
+        $scope.labels.push(val.statusName);
+        $scope.data.push(val.count);
+      });
+      console.log($scope.labels, $scope.data);
+
+
+      });
+
+  
   });
 
 
 
-  $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
-  $scope.series = ['Series A', 'Series B'];
-  $scope.data = [
-    [65, 59, 80, 81, 56, 55, 40],
-    [28, 48, 40, 19, 86, 27, 90]
-  ];
-  $scope.onClick = function (points, evt) {
-    console.log(points, evt);
-  };
-  $scope.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
-  $scope.options = {
-    scales: {
-      yAxes: [
-        {
-          id: 'y-axis-1',
-          type: 'linear',
-          display: true,
-          position: 'left'
-        },
-        {
-          id: 'y-axis-2',
-          type: 'linear',
-          display: true,
-          position: 'right'
-        }
-      ]
-    }
-  };
-});         
+
+app.controller("BarCtrl",function( $scope ,ChartService ){
+
+  ChartService.getGraph().then(function(response){
+
+      $scope.labels = [];
+      $scope.series = ["A","B"];
+      $scope.data = [];
+
+     //categoryName ,complaintCount
+     angular.forEach(response.ComplaintByCategory,function(val,index){
+
+      $scope.labels.push(val.categoryName);
+      $scope.data.push(val.complaintCount);
+     });
+
+  });
+
+
+});    
+        
 
 
 
